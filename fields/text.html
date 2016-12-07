@@ -8,6 +8,10 @@
 			<!-- BEGIN teacher_name:validator#required -->
 			<p class="acms-admin-text-error">値が入力されていません</p>
 			<!-- END teacher_name:validator#required -->
+			<input type="hidden" name="teacher_name:v#minLength" value="10"/>
+			<!-- BEGIN teacher_name:validator#minLength -->
+			<p class="acms-admin-text-error">10文字以上の文字を入力してください</p>
+			<!-- END teacher_name:validator#minLength -->
 			<input type="hidden" name="teacher_name:c" value="rnaskhc"/>
 			<input type="hidden" name="teacher_name:search" value="0" />
 		</td>
