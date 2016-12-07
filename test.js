@@ -1,5 +1,5 @@
 var Nightmare = require('nightmare');
-var assert = require("power-assert");
+var assert = require("assert");
 var fs = require('fs');
 var pkg = require("./package.json");
 require.extensions['.html'] = function (module, filename) {
@@ -40,7 +40,6 @@ describe('カスタムフィールドメーカーのテスト',function(){
         done();
       })
       .catch(function (error) {
-        console.error('Search failed:', error)
         done(error);
       });
   });
