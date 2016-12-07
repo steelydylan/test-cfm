@@ -5,14 +5,12 @@ var pkg = require("./package.json");
 require.extensions['.html'] = function (module, filename) {
     module.exports = fs.readFileSync(filename, 'utf8');
 };
-var textField = require("./fields/text.html");
 
 
 describe('カスタムフィールドメーカーのテスト',function(){
-  var nightMare = Nightmare(pkg.nightMare);
-
+  var textField = require("./fields/text.html");
   it('ValidatorとConverterの動作確認',function(done){
-      nightMare
+      Nightmare(pkg.nightMare)
       .goto(pkg.url)
       .type('[data-bind*="title"]', '講師名')
       .type('[data-bind*="name"]', 'teacher_name')
