@@ -11,7 +11,7 @@ var textField = require("./fields/text.html");
 describe('カスタムフィールドメーカーのテスト',function(){
   var nightMare = Nightmare(pkg.nightMare);
 
-  it('text.htmlと同じ値になること',function(done){
+  it('ValidatorとConverterの動作確認',function(done){
       nightMare
       .goto(pkg.url)
       .type('[data-bind*="title"]', '講師名')
