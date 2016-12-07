@@ -4,6 +4,12 @@
 		<td>
 			<input type="text" name="teacher_name" value="{teacher_name}" class="acms-admin-form-width-full"/>
 			<input type="hidden" name="field[]" value="teacher_name" />
+			<input type="hidden" name="teacher_name:v#required"/>
+			<!-- BEGIN teacher_name:validator#required -->
+			<p class="acms-admin-text-error">値が入力されていません</p>
+			<!-- END teacher_name:validator#required -->
+			<input type="hidden" name="teacher_name:c" value="rnaskhc"/>
+			<input type="hidden" name="teacher_name:search" value="0" />
 		</td>
 	</tr>
 </table>

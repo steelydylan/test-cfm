@@ -1,20 +1,17 @@
 {
   "dependencies": {
-    "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "nightmare": "^2.8.1"
+    "nightmare": "^2.8.1",
+    "power-assert": "^1.4.2"
   },
   "scripts": {
-  	"test": "mocha test.js --timeout 100000"
+    "test": "mocha test.js --timeout 1000000"
   },
-  "url":"https://developer.a-blogcms.jp/tools/",
-  "nightMare":{
-  	"openDevTools": {
-    	"mode": "detach"
-  	},
-  	"webPreferences": {
-    	"partition": "nopersist"
-  	},
-  	"show": true
+  "url": "https://developer.a-blogcms.jp/tools/",
+  "nightMare": {
+    "webPreferences": {
+      "partition": "nopersist"
+    },
+    "show": true
   }
 }
