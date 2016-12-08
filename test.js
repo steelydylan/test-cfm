@@ -51,6 +51,30 @@ describe('カスタムフィールドのテスト',function(){
         done(error);
       });
   });
+  
+  it('セレクトボタン,ラジオボタン,チェックボックスの動作確認',function(done){
+      nightmare
+      .click('[data-action*="refresh"]')
+      .click('[data-action*="historyClear"]')
+      .select('[data-bind*="type"]','select')
+      .type('[data-bind*="title"]', '都道府県')
+      .type('[data-bind*="name"]', 'prefecture')
+      .select('[data-bind*="optionFormat"]','pref')
+      .click('[data-action*="addOption"]')
+      .check('[data-action*="toggleCss"]')
+      .click('[data-action*="submit"]')
+      .evaluate(function () {
+        return document.querySelector('.prettyprint').innerText.slice(0,-1);
+      })
+      .then(function (result) {
+        assert.equal(result,require("./fields/select.html"));
+        done();
+      })
+      .catch(function (error) {
+        done(error);
+      });
+  });
+
   it('画像fieldの生成',function(done){
       nightmare
       .click('[data-action*="refresh"]')
@@ -81,6 +105,5 @@ describe('カスタムフィールドのテスト',function(){
         done(error);
       });
   });
-
 
 })
