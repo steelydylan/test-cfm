@@ -16,7 +16,6 @@ describe('カスタムフィールドのテスト',function(){
     show: true
   });
   it('ValidatorとConverterの動作確認',function(done){
-      var textField = require("./fields/text.html");
       nightmare.goto(pkg.url)
       .click('[data-action*="historyClear"]')
       .type('[data-bind*="title"]', '講師名')
@@ -45,7 +44,7 @@ describe('カスタムフィールドのテスト',function(){
         return document.querySelector('.prettyprint').innerText.slice(0,-1);
       })
       .then(function (result) {
-        assert.equal(result,textField);
+        assert.equal(result,require("./fields/text.html"));
         done();
       })
       .catch(function (error) {
@@ -53,7 +52,6 @@ describe('カスタムフィールドのテスト',function(){
       });
   });
   it('画像fieldの生成',function(done){
-      var imgField = require("./fields/img.html");
       nightmare
       .click('[data-action*="refresh"]')
       .click('[data-action*="historyClear"]')
@@ -76,11 +74,13 @@ describe('カスタムフィールドのテスト',function(){
         return document.querySelector('.prettyprint').innerText.slice(0,-1);
       })
       .then(function (result) {
-        assert.equal(result,imgField);
+        assert.equal(result,require("./fields/img.html"));
         done();
       })
       .catch(function (error) {
         done(error);
       });
   });
+
+
 })
