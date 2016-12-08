@@ -64,10 +64,8 @@ describe('カスタムフィールドのテスト',function(){
       .check('[data-action*="toggleCss"]')
       .click('[data-action*="submit"]')
       .select('[data-bind*="type"]','option')
-      .type('[data-bind*="name"]', 'prefecture2')
       .click('[data-action*="submit"]')
       .select('[data-bind*="type"]','checkbox')
-      .type('[data-bind*="name"]', 'prefecture3')
       .click('[data-action*="submit"]')
       .evaluate(function () {
         return document.querySelector('.prettyprint').innerText.slice(0,-1);
