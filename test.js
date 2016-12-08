@@ -6,15 +6,15 @@ var pkg = require('./package.json')
 require.extensions['.html'] = function (module, filename) {
     module.exports = fs.readFileSync(filename, 'utf8')
 }
+var nightmare = Nightmare({
+    webPreferences  : {
+    partition : 'nopersist',
+    preload:path.resolve('preload.js')
+  },
+  show: true
+});
 
 describe('カスタムフィールドのテスト',function(){
-  var nightmare = Nightmare({
-      webPreferences  : {
-      partition : 'nopersist',
-      preload:path.resolve('preload.js')
-    },
-    show: true
-  });
   it('ValidatorとConverterの動作確認',function(done){
       nightmare.goto(pkg.url)
       .click('[data-action*="historyClear"]')
@@ -51,7 +51,7 @@ describe('カスタムフィールドのテスト',function(){
         done(error);
       });
   });
-  
+
   it('セレクトボタン,ラジオボタン,チェックボックスの動作確認',function(done){
       nightmare
       .click('[data-action*="refresh"]')
@@ -62,6 +62,12 @@ describe('カスタムフィールドのテスト',function(){
       .select('[data-bind*="optionFormat"]','pref')
       .click('[data-action*="addOption"]')
       .check('[data-action*="toggleCss"]')
+      .click('[data-action*="submit"]')
+      .select('[data-bind*="type"]','option')
+      .type('[data-bind*="name"]', 'prefecture2')
+      .click('[data-action*="submit"]')
+      .select('[data-bind*="type"]','checkbox')
+      .type('[data-bind*="name"]', 'prefecture3')
       .click('[data-action*="submit"]')
       .evaluate(function () {
         return document.querySelector('.prettyprint').innerText.slice(0,-1);
@@ -105,5 +111,4 @@ describe('カスタムフィールドのテスト',function(){
         done(error);
       });
   });
-
 })
