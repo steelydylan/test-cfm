@@ -7,11 +7,5 @@
   "scripts": {
     "test": "mocha test.js --timeout 1000000"
   },
-  "url": "https://developer.a-blogcms.jp/tools/",
-  "nightMare": {
-    "webPreferences": {
-      "partition": "nopersist"
-    },
-    "show": true
-  }
+  "url": "https://developer.a-blogcms.jp/tools/"
 }

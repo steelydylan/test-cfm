@@ -1,17 +1,24 @@
-var Nightmare = require('nightmare');
-var assert = require("assert");
-var fs = require('fs');
-var pkg = require("./package.json");
+var Nightmare = require('nightmare')
+var assert = require('assert')
+var fs = require('fs')
+var path = require('path')
+var pkg = require('./package.json')
 require.extensions['.html'] = function (module, filename) {
-    module.exports = fs.readFileSync(filename, 'utf8');
-};
-
+    module.exports = fs.readFileSync(filename, 'utf8')
+}
 
 describe('カスタムフィールドのテスト',function(){
-  var textField = require("./fields/text.html");
+  var nightmare = Nightmare({
+      webPreferences  : {
+      partition : 'nopersist',
+      preload:path.resolve('preload.js')
+    },
+    show: true
+  });
   it('ValidatorとConverterの動作確認',function(done){
-      Nightmare(pkg.nightMare)
-      .goto(pkg.url)
+      var textField = require("./fields/text.html");
+      nightmare.goto(pkg.url)
+      .click('[data-action*="historyClear"]')
       .type('[data-bind*="title"]', '講師名')
       .type('[data-bind*="name"]', 'teacher_name')
       .check('[data-bind*="openValidator"]')
@@ -45,19 +52,20 @@ describe('カスタムフィールドのテスト',function(){
         done(error);
       });
   });
-
-  var imgField = require("./fields/img.html");
   it('画像fieldの生成',function(done){
-      Nightmare(pkg.nightMare)
-      .goto(pkg.url)
+      var imgField = require("./fields/img.html");
+      nightmare
+      .click('[data-action*="refresh"]')
+      .click('[data-action*="historyClear"]')
       .select('[data-bind*="type"]','image')
       .type('[data-bind*="title"]', '講師の画像')
       .type('[data-bind*="name"]', 'teacher_img')
-      .select('[data-bind*="size"]','width')
+      .select('[data-bind*="normal"]','width')
       .type('[data-bind*="normalSize"]', '100')
       .type('[data-bind*="tiny"]', 'width')
       .type('[data-bind*="tinySize"]', '50')
       .type('[data-bind*="large"]', 'width')
+      .check('[data-bind*="alt"]')
       .type('[data-bind*="largeSize"]', '200')
       .type('[data-bind*="square"]', 'width')
       .type('[data-bind*="squareSize"]', '400')
