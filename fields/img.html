@@ -1,0 +1,27 @@
+<table class="acms-admin-table-admin-edit">
+	<tr>
+		<th>講師の画像</th>
+		<td class="js-img_resize_cf">
+			<!-- BEGIN_IF [{teacher_img@path}/em] -->
+			<img src="" style="display:none;width:100px;" class="js-img_resize_preview"/>
+			<!-- END_IF -->
+			<!-- BEGIN teacher_img@path:veil -->
+			<img src="%{ARCHIVES_DIR}{teacher_img@path}" style="width:100px;" class="js-img_resize_preview"/>
+			<input type="hidden" name="teacher_img@old" value="{teacher_img@path}" /><br />
+			<label class="acms-admin-form-checkbox">
+				<input type="checkbox" name="teacher_img@edit" value="delete" />
+				<i class="acms-admin-ico-checkbox"></i> 削除
+			</label>
+			<!-- END teacher_img@path:veil -->
+			<input type="file" name="teacher_img" size="20" class="js-img_resize_input" /><br />
+			代替テキスト:<input type="text" name="teacher_img@alt" value="{teacher_img@alt}" size="40" />
+			<input type="hidden" name="field[]" value="teacher_img" />
+			<input type="hidden" name="teacher_img:extension" value="image" />
+			<input type="hidden" name="teacher_img@width" value="100" />
+			<input type="hidden" name="teacher_img@tinyWidth" value="50" />
+			<input type="hidden" name="teacher_img@largeWidth" value="200" />
+			<input type="hidden" name="teacher_img@squareWidth" value="400" />
+			<input type="hidden" name="teacher_img@filename" value="" />
+		</td>
+	</tr>
+</table>
