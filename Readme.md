@@ -1,6 +1,6 @@
 ## CustomField Test
 
 ```shell
-yarn install
+npm install
 npm run test
 ```
