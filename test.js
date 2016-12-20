@@ -10,14 +10,14 @@ require.extensions['.html'] = function (module, filename) {
 var nightmare = Nightmare({
     webPreferences  : {
     partition : 'nopersist',
-    preload:path.resolve('preload.js')
+    preload:path.resolve(__dirname,'preload.js')
   },
   show: true
 });
 
 describe('カスタムフィールドのテスト',function(){
   it('ValidatorとConverterの動作確認',function(done){
-      nightmare.goto(pkg.url)
+      nightmare.goto("https://developer.a-blogcms.jp/tools/")
       .click('[data-action*="historyClear"]')
       .type('[data-bind*="title"]', '講師名')
       .type('[data-bind*="name"]', 'teacher_name')
